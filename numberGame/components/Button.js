@@ -2,14 +2,12 @@ import { View, Text,Pressable, StyleSheet } from "react-native";
 
 function PrimaryButton(props){
 
-    function HandlePress(){
-        console.log("Button is pressed");
-    }
+
 
     return(
         
          <View style={styles.buttonStyle}>
-            <Pressable onPress={HandlePress} android_ripple={{color:"#95D2B3"}} style={styles.pressStyle}>
+            <Pressable onPress={props.OnPress} android_ripple={{color:"#95D2B3"}} style={styles.pressStyle}>
                 {/* the props.children fetches everthing inbetween the opening and closing tag of PrimaryButton tag */}
                 <Text style={styles.buttonTextStyle}> {props.children} </Text>
             </Pressable>
