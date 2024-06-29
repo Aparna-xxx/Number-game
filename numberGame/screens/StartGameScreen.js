@@ -4,7 +4,7 @@ import Button from "../components/Button";
 
 
 
-function StartGameScreen(){
+function StartGameScreen(props){
     
     const [enteredValue, setEnteredValue] = useState('');
 
@@ -22,6 +22,10 @@ function StartGameScreen(){
         }
         else if(isNaN(parseInt(enteredValue))){
             Alert.alert("Invalid data",'Enter numerical values only', [{text:"okay",style:'destructive', onPress:ResetText}])
+        }
+        else{
+            console.log("valid");
+            props.onPickNumber(parseInt(enteredValue));
         }
     }
     
