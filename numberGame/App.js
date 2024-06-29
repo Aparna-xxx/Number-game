@@ -1,9 +1,9 @@
-import { StyleSheet, ImageBackground} from 'react-native';
-import StartScreen from './screens/StartGameScreen';
+import { StyleSheet, ImageBackground, SafeAreaView } from 'react-native';
 import {LinearGradient} from 'expo-linear-gradient';
 import { useState } from 'react';
 import StartGameScreen from './screens/StartGameScreen';
 import PlayScreen from './screens/PlayScreen';
+
 export default function App() {
 
   const [userNumber, SetUserNumber]=useState(null);
@@ -19,7 +19,7 @@ export default function App() {
   return (
     <LinearGradient style={styles.rootContainer} colors={['#32012F','#729762']}>
       <ImageBackground source={require("./assets/images/leaves.png")}  style={styles.rootContainer} imageStyle={styles.backgroundImage}>
-        {Screen}
+        <SafeAreaView style={styles.rootContainer}>{Screen}</SafeAreaView>
       </ImageBackground>
     </LinearGradient>
   );
