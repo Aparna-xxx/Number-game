@@ -3,6 +3,7 @@ import Title from "../components/Title";
 import Colors from "../util/Colors";
 import { useState ,useEffect} from "react";
 import Button from '../components/Button.js'
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 
 
@@ -28,14 +29,20 @@ function PlayScreen({enteredValue, onGameOver}){
     
     const firstNum= generateRandomBetween(1,100,enteredValue)
     const [guess,SetGuess]=useState(firstNum);
+    const [rounds,SetRounds]=useState([firstNum]);
 
 
 
     useEffect(()=>{
         if(enteredValue==guess){
-            onGameOver();
+            onGameOver(rounds.length);
         }
     },[guess,enteredValue,onGameOver])
+
+    useEffect(()=>{
+        minB=1
+        maxB=100
+    },[]);
 
     function HandleNextGuess(direction){
 
@@ -59,6 +66,8 @@ function PlayScreen({enteredValue, onGameOver}){
         }
         const new_rand=generateRandomBetween(minB, maxB, guess)
         SetGuess(new_rand)
+
+        SetRounds(prevRounds =>[new_rand,...prevRounds])
   }
 
     return(
@@ -72,10 +81,20 @@ function PlayScreen({enteredValue, onGameOver}){
                         <Text style={styles.subText}>Let me know if your secret value is greater or smaller when compared to my guess 😉 </Text>
                     </View>
                     <View style={styles.buttonContainer}>
-                        <Button OnPress={HandleNextGuess.bind(this,"lower")}>-</Button>
-                        <Button OnPress={HandleNextGuess.bind(this,"higher")}>+</Button>
+                        <Button OnPress={HandleNextGuess.bind(this,"lower")}>
+                            <Ionicons name="remove-sharp" size={24}></Ionicons>
+                        </Button>
+                        <Button OnPress={HandleNextGuess.bind(this,"higher")}>
+                            <Ionicons name="add-sharp" size={24}></Ionicons>
+                        </Button>
                     </View>
+                    
             </View>
+            <View style={styles.roundsInfo}>
+                        <Title>Your guesses:</Title>   
+                        { rounds.map(round=><Text key={round} style={styles.roundsText}>{round}</Text>)}
+
+                    </View>
         </View>
     )
 }
@@ -130,5 +149,14 @@ const styles = new StyleSheet.create({
     },
     subTextContainer:{
         paddingHorizontal:30,
+    },
+    roundsInfo:{
+        alignItems:'center',
+        marginTop:20
+    },
+    roundsText:{
+        color:'white',
+        fontSize:20,
+        marginTop:4,
     }
 })

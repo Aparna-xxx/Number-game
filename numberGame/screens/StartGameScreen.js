@@ -1,4 +1,4 @@
-import { View, TextInput, StyleSheet , Alert} from "react-native";
+import { View, TextInput, StyleSheet , Alert, Text} from "react-native";
 import { useState } from "react";
 import Button from "../components/Button";
 
@@ -31,11 +31,15 @@ function StartGameScreen(props){
     
     
     return(
-        <View style = {styles.inputContainer}>         
-            <TextInput style= {styles.numberInput} maxLength={2} keyboardType="number-pad" value={enteredValue} onChangeText={handleInput}/>
-            <View style= {styles.buttonInternalContainer}>
-                <Button OnPress={ResetText}> Reset </Button>
-                <Button OnPress={confirmValue}> Play </Button>
+        <View style={styles.rootContainer}>
+            <Text style={styles.title}>Start a new game</Text>
+            <View style = {styles.inputContainer}> 
+                <Text style={styles.text}>Enter a number:</Text> 
+                <TextInput style= {styles.numberInput} maxLength={2} keyboardType="number-pad" value={enteredValue} onChangeText={handleInput}/>
+                <View style= {styles.buttonInternalContainer}>
+                    <Button OnPress={ResetText}> Reset </Button>
+                    <Button OnPress={confirmValue}> Play </Button>
+                </View>
             </View>
         </View>
 
@@ -47,7 +51,7 @@ const styles = StyleSheet.create({
     inputContainer: {
         //flex:1,
         padding:16,
-        marginTop:100,
+        marginTop:36,
         backgroundColor: '#55AD9B',
         marginHorizontal:15,
         borderRadius:8,
@@ -68,11 +72,26 @@ const styles = StyleSheet.create({
         flexDirection:"row",
         justifyContent:"space-around",
         marginTop:20,
-        width:'95%',
-        
-    
-
-        }
+        width:'95%',     
+    },
+    rootContainer:{
+        flex:1,
+        marginTop:100,
+        alignItems:'center'
+    },
+    title: {
+        fontSize: 24,
+        textAlign:'center',
+        color: '#F1F8E8',
+        borderWidth:2,
+        padding:10,
+        paddingHorizontal:20,
+        borderColor:'#f1f8e8'
+    },
+    text:{
+        fontSize:20,
+        color:'#f1f8e8'
+    }
 
 })
 

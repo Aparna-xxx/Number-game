@@ -9,14 +9,21 @@ export default function App() {
 
   const [userNumber, SetUserNumber]=useState(null);
   const [gameOver,SetGameOver]=useState(true);
+  const [roundsNum,SetRoundsNum]=useState(0);
+
+  function StartNewGameHandler(){
+      SetRoundsNum(0);
+      SetUserNumber(null);
+      }
 
   function NumberIsEntered(number){
     SetUserNumber(number)
     SetGameOver(false)
   }
 
-  function GameOverHandler(){
+  function GameOverHandler(numberOfRounds){
     SetGameOver(true);
+    SetRoundsNum(numberOfRounds)
   }
 
   let Screen = <StartGameScreen onPickNumber={NumberIsEntered}/>;
@@ -24,7 +31,7 @@ export default function App() {
     Screen=<PlayScreen enteredValue={userNumber} onGameOver={GameOverHandler}/>
   }
   if(gameOver && userNumber){
-    Screen=<GameOverScreen/>
+    Screen=<GameOverScreen userNumber={userNumber} roundsNumber={roundsNum} startNewGame={StartNewGameHandler}/>
   }
 
   
