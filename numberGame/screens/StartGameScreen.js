@@ -1,4 +1,4 @@
-import { View, TextInput, StyleSheet , Alert, Text} from "react-native";
+import { View, TextInput, StyleSheet , Alert, Text, useWindowDimensions} from "react-native";
 import { useState } from "react";
 import Button from "../components/Button";
 
@@ -7,6 +7,7 @@ import Button from "../components/Button";
 function StartGameScreen(props){
     
     const [enteredValue, setEnteredValue] = useState('');
+    const {width,height} = useWindowDimensions();
 
     function handleInput(inputText){
         setEnteredValue (inputText);

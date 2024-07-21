@@ -1,4 +1,4 @@
-import { StyleSheet, ImageBackground, SafeAreaView } from 'react-native';
+import { StyleSheet, ImageBackground, SafeAreaView, useWindowDimensions } from 'react-native';
 import {LinearGradient} from 'expo-linear-gradient';
 import { useState } from 'react';
 import StartGameScreen from './screens/StartGameScreen';
@@ -10,6 +10,7 @@ export default function App() {
   const [userNumber, SetUserNumber]=useState(null);
   const [gameOver,SetGameOver]=useState(true);
   const [roundsNum,SetRoundsNum]=useState(0);
+
 
   function StartNewGameHandler(){
       SetRoundsNum(0);
